@@ -49,15 +49,12 @@ This project is a Playwright-based test automation framework designed to perform
 * [Bug 4: Upon removing two apps from my favorites list, I attempted to re-add them. The system erroneously reported that the second app was already a favorite. Subsequent attempts to delete this non-existent favorite resulted in an error.]
 
 ### **Proposed Improvements**
-The "deletion" of apps is not a true deletion and could potentially cause issues or conflicts if I delete an app and then want to re-add it. It also complicates the development of test.
-
-The HTML structure in Home and Apps is different, making it difficult to reuse test steps. Data-testid attributes are very helpful and should be used more consistently.
-
-The app titles displayed in the "Apps" section are not consistent with the titles used to reference those apps in the "Favorites" section. This inconsistency results in errors when checking if an app has been added to favorites.
-Example:
-    Free Games by PlayWorks != Free Games by PlayWorksFree Games by PlayWorks
-    MEGOGO — TV and Movies != MEGOGO — TV and MoviesMEGOGO — TV and Movies
-This causes tests to fail leading to flaky tests.
+1. The "deletion" of apps is not a true deletion and could potentially cause issues or conflicts if I delete an app and then want to re-add it. It also complicates the development of test.
+2. The HTML structure in Home and Apps is different, making it difficult to reuse test steps. Data-testid attributes are very helpful and should be used more consistently.
+3. The app titles displayed in the "Apps" section are not consistent with the titles used to reference those apps in the "Favorites" section. This inconsistency results in errors when checking if an app has been added to favorites. This causes tests to fail leading to flaky tests.
+    <br> Example:
+    - Free Games by PlayWorks != Free Games by PlayWorksFree Games by PlayWorks
+    - MEGOGO — TV and Movies != MEGOGO — TV and MoviesMEGOGO — TV and Movies
 
 * **Increase test coverage:** Add more test cases to cover different scenarios and edge cases:
     Delete WhatchTV app (to ensure is not deleteable)
