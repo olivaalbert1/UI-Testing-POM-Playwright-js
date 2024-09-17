@@ -57,6 +57,7 @@ This project is a Playwright-based test automation framework designed to perform
     - MEGOGO — TV and Movies != MEGOGO — TV and MoviesMEGOGO — TV and Movies
 
 * **Increase test coverage:** Add more test cases to cover different scenarios and edge cases:
-    Delete WhatchTV app (to ensure is not deleteable)
-    Delete all apps (except WhatchTV)
-    add an app to favorites that is already added
+    * Delete WhatchTV app (to ensure is not deleteable)
+    * Delete all apps (except WhatchTV)
+    * add an app to favorites that is already added
+    * ...
