@@ -40,6 +40,31 @@ This project is a Playwright-based test automation framework designed to perform
 
 * **Base URL:** Set the base URL for your application in the terminal before running tests using the `BASEURL` environment variable.
 * **Playwright Config:** Customize the Playwright configuration in `playwright.config.js` to suit your project needs.
+<br> * I've configured a single retry for failed tests.
+   ```js
+   module.exports = defineConfig({
+     retries: 1,
+   })
+   ```
+<br> * I've divided the 3 tests into separate files to enable parallel execution. This configuration is adjustable.
+<br> * Test traces are saved for every run, regardless of the outcome. However, this behavior can be customized ('off','on','on-all-retries','on-first-retry','retain-on-failure','retain-on-first-failure','retry-with-trace').
+```js
+   module.exports = defineConfig({
+     trace: 'on',
+   })
+   ```
+<br> * The tests are optimized to minimize wait times, only pausing for page loads or element visibility. 'await page.waitForTimeout(3000)' should be avoided.
+<br> * I attempted to implement a dynamic keystroke simulation using an array-based parameter and a foreach loop, but the execution was too fast for the page to respond. This feature had to be omitted, which is unfortunate as it would have been highly reusable.
+<br> * I've selected Chrome as the default browser, but others can be added, and tests can even be run on mobile devices.
+```js
+   /* Configure projects for major browsers */
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ]
+   ```
 
 ### **Known Bugs and Issues**
 
