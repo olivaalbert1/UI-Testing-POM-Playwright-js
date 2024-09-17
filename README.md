@@ -10,6 +10,43 @@ This project is a Playwright-based test automation framework designed to perform
 * **JavaScript:** The primary programming language for test scripts.
 * **Page Object Model (POM):** A design pattern that separates page-specific logic from test cases.
 
+### **Project Structure**
+```
+project-root
+├── node_modules
+├── utilities
+│   ├── randomNum.js
+├── package.json
+├── package-lock.json
+├── playwright.config.js
+├── pages
+│   ├── Home-page.js
+├── tests
+│   └── add-app.spec.js
+│   └── delete-one-app.spec.js
+│   └── search-category.spec.js
+└── .gitignore
+```
+
+* **tests/pages:** Contains page objects representing different pages of the application.
+* **tests/add-app.spec.js:** The test verifies that an app can be successfully added to the favorites list on the home page from the apps page.
+1. Navigates to the home page.
+2. Navigates to the apps page.
+3. Selects a random app from the apps list.
+4. Adds the selected app to the favorites list on the home page.
+5. Verifies that the added app is present in the favorites list on the home page.
+* **tests/delete-one-app.spec.js:** The test describes the process of deleting an app.
+1. Navigates to the home page
+2. Randomly selects an app from a list
+3. Positions the cursor on that app
+4. Deletes it
+5. Verifies that the deleted app is no longer visible on the screen.
+* **tests/search-category.spec.js:** This test verifies that a category can be successfully opened from the search page.
+1. Navigates to the homepage.
+2. Accesses the search page.
+3. Selects a random category from the search results list.
+4. Verifies that the correct category URL is displayed after opening the selected category.
+
 ### **Getting Started**
 
 1. **Clone the repository:**
@@ -27,18 +64,31 @@ This project is a Playwright-based test automation framework designed to perform
    ```bash
    BASEURL='PUT_HERE_YOUR_URL' npx playwright test --headed
    ```
-* **Specific test file:**
+* **Specific test file in headless mode:**
    ```bash
-   BASEURL='PUT_HERE_YOUR_URL' npx playwright test tests/example.spec.js
+   BASEURL='PUT_HERE_YOUR_URL' npx playwright test tests/delete-one-app.spec.js
    ```
-* **Headless mode:**
+* **Specific test scenario in headless mode:**
+   ```bash
+   BASEURL='PUT_HERE_YOUR_URL' npx playwright test -g "Add app"
+   ```
+* **All tests in headless mode:**
    ```bash
    BASEURL='PUT_HERE_YOUR_URL' npx playwright test
+   ```
+* **If all the tests pass, no report will be prompted, but you can see the report with - Show report command:**
+   ```bash
+   npx playwright show-report
+   ```
+* **Execute test showing trace:**
+   ```bash
+   npx playwright test --ui
    ```
 
 ### **Configuration**
 
-* **Base URL:** Set the base URL for your application in the terminal before running tests using the `BASEURL` environment variable.
+* **Base URL:** Set the base URL for your application in the terminal before running tests using the `BASEURL` environment variable. You can parameterize only the environment part, for example having in playwright.config.js baseUrl: 'https://{env}.myapplication.com/' and when executing the command just indicate qa,uat,prod... or the environment in which you want to run the tests. But as it has been explicitly indicated in the technical test statement not to upload the application URL to the repository, I have decided to parameterize the entire URL by command.
+We can also use tags to assign some tests to certain environments, but that was outside the scope of the test.
 * **Playwright Config:** Customize the Playwright configuration in `playwright.config.js` to suit your project needs.
 <br> * I've configured a single retry for failed tests.
    ```js
