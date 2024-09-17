@@ -60,4 +60,27 @@ exports.HomePage = class HomePage {
     await expect(this.page.locator('text=Favourite Apps')).toHaveAttribute('data-focused', 'focused')
     await this.pageTestId.press('Enter');
   }
+
+  async goToSearchPage() {
+    await this.pageTestId.press('ArrowUp')
+    await this.pageTestId.press('ArrowUp')
+    await this.pageTestId.press('ArrowLeft')
+    await this.pageTestId.press('Enter')
+    await this.waitForLoadState
+    await this.page.waitForSelector('[id="focusable-movie-1"]')
+  }
+
+  async navigateToCategory(catNum,categoryToBeSelected) {
+    const row = Math.trunc(catNum / 6)
+    const col = catNum % 6
+
+    for (let i = 0; i <= row; i++) {
+        await this.page.getByTestId(categoryToBeSelected).press('ArrowDown')
+    }
+    for (let j = 0; j < col; j++) {
+        await this.page.getByTestId(categoryToBeSelected).press('ArrowRight')
+    }
+    await this.page.getByTestId(categoryToBeSelected).press('Enter');
+    await this.waitForLoadState
+  }
 };
