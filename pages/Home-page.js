@@ -38,4 +38,26 @@ exports.HomePage = class HomePage {
     await this.page.waitForSelector('text=to remove', { timeout: 4000 })
     await this.pageTestId.press('Enter');
   }
+
+  async goToAppsPage() {
+    await this.pageTestId.press('ArrowUp')
+    await this.pageTestId.press('ArrowUp')
+    await this.pageTestId.press('ArrowRight')
+    await this.pageTestId.press('ArrowRight')
+    await this.pageTestId.press('ArrowRight')
+    await this.pageTestId.press('Enter');
+    await this.page.waitForSelector('text=Featured Apps', { timeout: 4000 })
+    await this.pageTestId.press('ArrowDown')
+    await this.pageTestId.press('ArrowDown')
+  }
+
+  async addApp() {
+    await this.pageTestId.press('Enter');
+    await this.page.waitForSelector('text=Open', { timeout: 4000 })
+    await expect(this.page.locator('[id="app-open-button"]')).toHaveAttribute('data-focused', 'focused')
+    await this.page.locator('[id="app-open-button"]').press('ArrowRight')
+    await this.page.locator('[id="app-open-button"]').press('Enter');
+    await expect(this.page.locator('text=Favourite Apps')).toHaveAttribute('data-focused', 'focused')
+    await this.pageTestId.press('Enter');
+  }
 };
