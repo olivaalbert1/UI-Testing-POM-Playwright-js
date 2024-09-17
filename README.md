@@ -46,7 +46,7 @@ project-root
 2. Accesses the search page.
 3. Selects a random category from the search results list.
 4. Verifies that the correct category URL is displayed after opening the selected category.
-* **utilities:** The utilities folder houses functions that can be reused across multiple tests and are not specific to any particular page. For instance, it includes a function to generate random numbers within a specified range (exclusive of the minimum). Other potential functionalities could include text formatting, unique ID generation, and date handling.
+* **utilities:** The utilities folder houses functions that can be reused across multiple tests and are not specific to any particular page. For instance, it includes a function to generate random numbers within a specified range (the maximum is exclusive and the minimum is inclusive). Other potential functionalities could include text formatting, unique ID generation, and date handling.
 
 ### **Getting Started**
 
